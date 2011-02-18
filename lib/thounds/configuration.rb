@@ -37,7 +37,7 @@ module Thounds
     # The endpoint that will be used to connect if none is set
     #
     # @note This is configurable in case you want to use HTTP instead of HTTPS, specify a different API version, or use a Thounds-compatible endpoint.
-    DEFAULT_ENDPOINT = 'http://thounds.local:3000/'.freeze
+    DEFAULT_ENDPOINT = 'http://thounds.com/'.freeze
 
     # The response format appended to the path and sent in the 'Accept' header if none is set
     #
