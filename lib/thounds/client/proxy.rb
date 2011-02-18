@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
 module Thounds
   class Client
-    # @private
     class Proxy
       attr_reader :options, :verb, :path
 

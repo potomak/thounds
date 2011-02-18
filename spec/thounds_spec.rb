@@ -19,9 +19,73 @@ describe Thounds do
     end
 
     it "should return the same results as a client" do
-      Thounds.users(31) {|user| user}.should == Thounds::Client.new.users(31) {|user| user}
+      class_obj = nil
+      client_obj = nil
+      
+      Thounds.users(31) {|user| class_obj = user}
+      Thounds::Client.new.users(31) {|user| client_obj = user}
+      
+      class_obj.should == client_obj
     end
 
+  end
+  
+  context "when making a request to" do
+    
+    describe "profile" do
+      before do
+        stub_get("profile")
+      end
+      
+      it "should use 'profile' reqest path" do
+        Thounds.profile {|r| r}.proxy.path.should == "profile"
+      end
+    end
+    
+    ["band", "library", "notifications"].each do |member|
+      describe "profile/#{member}" do
+        before do
+          stub_get("profile/#{member}")
+        end
+
+        it "should use 'profile/#{member}' reqest path" do
+          Thounds.profile.send(member) {|r| r}.proxy.path.should == "profile/#{member}"
+        end
+      end
+    end
+    
+    describe "users/666" do
+      before do
+        stub_get("users/666")
+      end
+      
+      it "should use 'users/666' reqest path" do
+        Thounds.users(666) {|r| r}.proxy.path.should == "users/666"
+      end
+    end
+    
+    ["band", "library"].each do |member|
+      describe "users/666/#{member}" do
+        before do
+          stub_get("users/666/#{member}")
+        end
+
+        it "should use 'users/666/#{member}' reqest path" do
+          Thounds.users(666).send(member) {|r| r}.proxy.path.should == "users/666/#{member}"
+        end
+      end
+    end
+    
+    describe "home" do
+      before do
+        stub_get("home")
+      end
+      
+      it "should use 'home' reqest path" do
+        Thounds.home {|r| r}.proxy.path.should == "home"
+      end
+    end
+    
   end
 
   describe ".client" do

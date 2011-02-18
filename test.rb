@@ -19,11 +19,11 @@
 # users_friendships     => /users/:user_id/friendships
 # thounds               => /thounds/:thound_id
 # thounds               => /thounds/:thound_hash
-# thounds_public_stream => /thounds/public_stream #### AAARRGHH
+# thounds_public_stream => /thounds/public_stream
 # thounds_search        => /thounds/search
 # tracks                => /tracks
 # tracks                => /tracks/:track_id
-# track_notifications   => /track_notifications/:thound_id #### AAARRGHH
+# track_notifications   => /track_notifications/:thound_id
 
 require 'lib/thounds'
 

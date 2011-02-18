@@ -11,6 +11,8 @@ module Thounds
 
     alias :api_endpoint :endpoint
     
+    attr_reader :proxy
+    
     def initialize(options={})
       super(options)
       @proxy = Proxy.new
@@ -30,9 +32,9 @@ module Thounds
       if block_given?
         @proxy.compose_request
         yield send(:request, @proxy.verb, @proxy.path, @proxy.options)
-      else
-        self
       end
+      
+      self
       
       # begin
       #   send(verb, path, options)
